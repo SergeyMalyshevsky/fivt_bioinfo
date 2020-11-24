@@ -1,16 +1,16 @@
 ELEMENTS = ["A", "C", "G", "T"]
 
 
-def hamming_distance(str1, str2):
-    counter = 0
-    for s1, s2 in zip(str1, str2):
-        if s1 != s2:
-            counter += 1
-    return counter
+def hamming_distance(word_1, word_2):
+    count = 0
+    for letter_1, letter_2 in zip(word_1, word_2):
+        if letter_1 != letter_2:
+            count += 1
+    return count
 
 
 def get_neighbors(pattern, d):
-    neighbor = []
+    neighbors = []
 
     if d == 0:
         return pattern
@@ -22,10 +22,10 @@ def get_neighbors(pattern, d):
     for text in suffix:
         if hamming_distance(pattern[1:], text) < d:
             for element in ELEMENTS:
-                neighbor.append(element + text)
+                neighbors.append(element + text)
         else:
-            neighbor.append(pattern[0] + text)
-    return neighbor
+            neighbors.append(pattern[0] + text)
+    return neighbors
 
 
 def get_words(genome, k):
