@@ -1,4 +1,4 @@
-import itertools
+from itertools import product
 
 
 def k_universal_string_problem(*var):
@@ -9,7 +9,7 @@ def k_universal_string_problem(*var):
     path = []
 
     universe = ["0", "1"]
-    k_mers = ["".join(el) for el in itertools.product(universe, repeat=k)]
+    k_mers = ["".join(el) for el in product(universe, repeat=k)]
     patterns = sorted(k_mers)
 
     for pattern in patterns:
