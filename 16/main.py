@@ -76,7 +76,8 @@ def peptide_encoding_problem(*var):
 
     for i in range(limit):
 
-        if translation(dna[i:i + len(peptide) * 3].replace('T', 'U')) == peptide or translation(reverse_seq(dna[i:i + len(peptide) * 3]).replace('T', 'U')) == peptide:
+        if translation(dna[i:i + len(peptide) * 3].replace('T', 'U')) == peptide or translation(
+                reverse_seq(dna[i:i + len(peptide) * 3]).replace('T', 'U')) == peptide:
             seq.append(dna[i:i + len(peptide) * 3])
     return seq
 
@@ -103,6 +104,7 @@ def reverse_seq(seq):
 
     result = sequence[::-1]
     return result
+
 
 class Executor:
     @staticmethod
