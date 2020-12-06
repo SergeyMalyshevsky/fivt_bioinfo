@@ -2,7 +2,7 @@ def string_reconstruction_problem(*var):
     patterns = var[1:]
 
     k_mers = []
-    stack = []
+    s = []
     path = []
     genome = ''
 
@@ -17,16 +17,16 @@ def string_reconstruction_problem(*var):
         k_mers_dict[pattern[0:-1]].append(pattern[1:])
 
     st_list = [i for i, j in balance_count(k_mers_dict).items() if j == -1]
-    stack.append(st_list[0])
+    s.append(st_list[0])
 
-    while stack:
-        x = stack[-1]
+    while s:
+        x = s[-1]
         try:
             y = k_mers_dict[x][0]
-            stack.append(y)
+            s.append(y)
             k_mers_dict[x].remove(y)
         except:
-            path.append(stack.pop())
+            path.append(s.pop())
 
     for k_mer in path[::-1]:
         genome += k_mer[0]
