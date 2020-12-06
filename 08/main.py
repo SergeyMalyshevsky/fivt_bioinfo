@@ -132,7 +132,6 @@ class Executor:
         input_list = data.split()
 
         input_data = []
-        cell = ''
         for element in input_list:
             if 'input' in element.lower():
                 continue
