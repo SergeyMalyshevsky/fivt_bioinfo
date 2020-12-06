@@ -26,11 +26,11 @@ def get_best_motifs(dna, k, t):
 def get_profile(motifs):
     profile = []
     letters = 'ACGT'
-    motifs_len = len(motifs)
+    motifs_len = len(motifs) + 4
     for i in range(len(motifs[0])):
         count = {}
         for letter in letters:
-            count[letter] = 0
+            count[letter] = 1
         for motif in motifs:
             if motif[i] in letters:
                 count[motif[i]] += 1
@@ -138,4 +138,4 @@ class Executor:
 
 
 if __name__ == "__main__":
-    Executor.execute(greedy_motif_search, 'greedy_motif_search.txt')
+    Executor.execute(greedy_motif_search, 'greedy_motif_search_pseudocounts.txt')
