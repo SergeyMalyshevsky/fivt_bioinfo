@@ -1,4 +1,4 @@
-def find_the_highest_scoring_alignmen(sequence_1, sequence_2, matrix, penalty):
+def find_the_highest_scoring_alignment(sequence_1, sequence_2, matrix, penalty):
     length_1 = len(sequence_1)
     length_2 = len(sequence_2)
     s = [[0] * (length_2 + 1) for _ in range(length_1 + 1)]
@@ -17,7 +17,8 @@ def find_the_highest_scoring_alignmen(sequence_1, sequence_2, matrix, penalty):
             backtrack[i][j] = score_list.index(s[i][j])
 
     insert = lambda seq, i: seq[:i] + '-' + seq[i:]
-    align_1, align_2 = sequence_1, sequence_2
+    align_1 = sequence_1
+    align_2 = sequence_2
     a = length_1
     b = length_2
     max_score = str(s[a][b])
@@ -56,15 +57,15 @@ def read_dataset(filename):
     return input_data
 
 
-def read_BLOSUM62(filename):
-    with open('BLOSUM62.txt') as f1:
+def read_table(filename):
+    with open(filename) as f1:
         lines = [line.strip().split() for line in f1.readlines()]
-        score_matrix = {(line[0], line[1]): int(line[2]) for line in lines}
-    return score_matrix
+        matrix = {(line[0], line[1]): int(line[2]) for line in lines}
+    return matrix
 
 
 if __name__ == '__main__':
     sequence = read_dataset('global_alignment.txt')
-    matrix = read_BLOSUM62('BLOSUM62.txt')
-    for line in find_the_highest_scoring_alignmen(sequence[0], sequence[1], matrix, 5):
+    matrix = read_table('BLOSUM62.txt')
+    for line in find_the_highest_scoring_alignment(sequence[0], sequence[1], matrix, 5):
         print(line)
