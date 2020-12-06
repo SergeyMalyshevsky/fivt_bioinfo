@@ -133,7 +133,12 @@ class Executor:
                 converted_input_data.append(element)
 
         result = func(*converted_input_data)
-        print(*result)
+
+        if isinstance(result, list):
+            for element in result:
+                print(element)
+        elif isinstance(result, int):
+            print(result)
 
 
 if __name__ == "__main__":
